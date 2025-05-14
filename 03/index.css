@@ -1,0 +1,98 @@
+/* ③横幅いっぱいのカルーセルの個別CSS */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------------------*
+ * カルーセル
+ * ----------------------*/
+.carousel {
+  /* 基準にするため、アンカー名を指定 */
+  anchor-name: --carousel;
+  height: 800px;
+  display: grid;
+  grid-auto-columns: 100%;
+  /* アイテムを横並びにする */
+  grid-auto-flow: column;
+  overflow-x: auto;
+  /* X方向にスナップ */
+  scroll-snap-type: x mandatory;
+  /* 1度に1枚ずつ移動 */
+  scroll-snap-stop: always;
+  /* スムーズにスクロールさせる */
+  scroll-behavior: smooth;
+  /* インジケーターの表示 */
+  scroll-marker-group: after;
+  scrollbar-width: none;
+
+  /* スクロールバー非表示（Chrome、Safari） */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 前へ・次へボタン */
+  &::scroll-button(*) {
+    /* カルーセルの位置を基準にする */
+    position-anchor: --carousel;
+    position: absolute;
+    top: anchor(center);
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #fff;
+    padding: 0;
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 1;
+    color: black;
+  }
+
+  /* ホバー時スタイル */
+  &::scroll-button(*):not(:disabled):hover {
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  &::scroll-button(*):disabled {
+    color: lightgray;
+  }
+
+  /* 前へボタン */
+  &::scroll-button(left) {
+    /* コンテンツ / 代替テキスト */
+    content: "◀" / "前へ";
+    left: calc(anchor(left) + 40px);
+  }
+
+  /* 次へボタン */
+  &::scroll-button(right) {
+    /* コンテンツ / 代替テキスト */
+    content: "▶" / "次へ";
+    right: calc(anchor(right) + 40px);
+  }
+}
+
+/* ----------------------*
+ * カルーセルの画像アイテム
+ * ----------------------*/
+.item {
+  width: 100%;
+  height: 800px;
+  scroll-snap-align: center;
+  transition: 0.3s ease-out;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    filter: brightness(60%);
+  }
+}

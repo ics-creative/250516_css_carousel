@@ -1,0 +1,97 @@
+/* ②インジケーターに画像を設定したカルーセルの個別CSS */
+
+/* ----------------------*
+ * コンテナー
+ * ----------------------*/
+.container {
+  width: 680px;
+  --item-width: 600px;
+  --item-height: 600px;
+  position: relative;
+  margin-bottom: 40px;
+  /* 各パーツ配置をグリッドでレイアウト */
+  display: grid;
+  grid-template-areas: "markers item";
+  grid-template-columns: auto 600px;
+  column-gap: 16px;
+}
+
+/* ----------------------*
+ * カルーセル
+ * ----------------------*/
+.carousel {
+  display: grid;
+  /* アイテムを横並びにする */
+  grid-auto-flow: column;
+  /* 次のスライドとの間隔 */
+  gap: 20px;
+  overflow-x: auto;
+  /* X方向にスナップ */
+  scroll-snap-type: x mandatory;
+  /* 1度に1枚ずつ移動 */
+  scroll-snap-stop: always;
+  /* スムーズにスクロールさせる */
+  scroll-behavior: smooth;
+  /* インジケーターの表示 */
+  scroll-marker-group: after;
+  grid-area: item;
+  scrollbar-width: none;
+  border-radius: 12px;
+
+
+  /* スクロールバー非表示（Chrome、Safari） */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* インジケーター（コンテナー） */
+  &::scroll-marker-group {
+    width: 80px;
+    display: grid;
+    gap: 8px;
+    grid-area: markers;
+    align-self: start;
+  }
+}
+
+/* ----------------------*
+ * カルーセルの画像アイテム
+ * ----------------------*/
+.item {
+  width: var(--item-width);
+  height: var(--item-height);
+  scroll-snap-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+
+  /* インジケーター */
+  &::scroll-marker {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+    overflow: hidden;
+    /* 背景画像を設定 */
+    background-image: var(--img);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  /* インジケーターのカレントスタイル */
+  &::scroll-marker:target-current {
+    background-color: #666;
+    border: 2px solid blue;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
