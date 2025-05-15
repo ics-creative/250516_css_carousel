@@ -99,7 +99,7 @@ body {
   }
 }
 
-@media screen and (width < 600px) {
+@media (width < 600px) {
   .carousel {
     height: 100vh;
 

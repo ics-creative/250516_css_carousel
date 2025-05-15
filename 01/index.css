@@ -130,7 +130,7 @@
   }
 }
 
-@media screen and (width < 600px) {
+@media (width < 600px) {
   .container {
     --item-width: calc(100vw - 32px);
     width: var(--item-width);
