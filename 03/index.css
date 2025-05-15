@@ -92,7 +92,31 @@ body {
     object-fit: cover;
   }
 
-  &:hover {
-    filter: brightness(60%);
+  @media (any-hover: hover) {
+    &:hover {
+      filter: brightness(60%);
+    }
+  }
+}
+
+@media screen and (width < 600px) {
+  .carousel {
+    height: 100vh;
+
+    &::scroll-button(*) {
+      top: calc(anchor(bottom) - 60px);
+    }
+
+    &::scroll-button(left) {
+      left: calc(anchor(left) + 16px);
+    }
+
+    &::scroll-button(right) {
+      right: calc(anchor(right) + 16px);
+    }
+  }
+
+  .item {
+    height: 100%;
   }
 }

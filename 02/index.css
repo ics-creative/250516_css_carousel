@@ -4,16 +4,15 @@
  * コンテナー
  * ----------------------*/
 .container {
-  width: 680px;
-  --item-width: 600px;
-  --item-height: 600px;
+  --item-width: 500px;
+  --item-height: 500px;
   position: relative;
   margin-bottom: 40px;
   /* 各パーツ配置をグリッドでレイアウト */
   display: grid;
   grid-template-areas: "markers item";
-  grid-template-columns: auto 600px;
-  column-gap: 16px;
+  grid-template-columns: auto 500px;
+  column-gap: 12px;
 }
 
 /* ----------------------*
@@ -37,6 +36,7 @@
   grid-area: item;
   scrollbar-width: none;
   border-radius: 12px;
+  scroll-snap-align: center;
 
 
   /* スクロールバー非表示（Chrome、Safari） */
@@ -46,7 +46,7 @@
 
   /* インジケーター（コンテナー） */
   &::scroll-marker-group {
-    width: 80px;
+    width: 64px;
     display: grid;
     gap: 8px;
     grid-area: markers;
@@ -68,15 +68,15 @@
   &::scroll-marker {
     content: "";
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-color: #ccc;
     transition: background-color 0.2s;
     border-radius: 8px;
     overflow: hidden;
     /* 背景画像を設定 */
     background-image: var(--img);
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border: 2px solid transparent;
@@ -86,12 +86,36 @@
   /* インジケーターのカレントスタイル */
   &::scroll-marker:target-current {
     background-color: #666;
-    border: 2px solid blue;
+    border: 2px solid orangered;
   }
 
   img {
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media screen and (width < 600px) {
+  .container {
+    --item-width: calc(100vw - 32px);
+    --item-height: calc(100vw - 32px);
+    width: var(--item-width);
+    display: grid;
+    grid-template-areas:
+      "item"
+      "markers";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 12px;
+  }
+
+  .carousel::scroll-marker-group {
+    width: var(--item-width);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    grid-area: markers;
   }
 }
