@@ -11,7 +11,8 @@ body {
 .carousel {
   /* 基準にするため、アンカー名を指定 */
   anchor-name: --carousel;
-  height: 800px;
+  --height: 60vw;
+  height: var(--height);
   display: grid;
   grid-auto-columns: 100%;
   /* アイテムを横並びにする */
@@ -81,7 +82,7 @@ body {
  * ----------------------*/
 .item {
   width: 100%;
-  height: 800px;
+  height: var(--height);
   scroll-snap-align: center;
   transition: 0.3s ease-out;
 

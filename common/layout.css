@@ -10,7 +10,7 @@ body {
 body {
   display: grid;
   place-content: start center;
-  margin: 30px 0 0;
+  margin: 20px 0 0;
   background-color: #fff;
 }
 
