@@ -3,6 +3,7 @@
 body {
   margin: 0;
   padding: 0;
+  display: block;
 }
 
 /* ----------------------*
@@ -11,7 +12,7 @@ body {
 .carousel {
   /* 基準にするため、アンカー名を指定 */
   anchor-name: --carousel;
-  --height: 60vw;
+  --height: 100%;
   height: var(--height);
   display: grid;
   grid-auto-columns: 100%;
@@ -102,8 +103,6 @@ body {
 
 @media (width < 600px) {
   .carousel {
-    height: 100vh;
-
     &::scroll-button(*) {
       top: calc(anchor(bottom) - 60px);
     }
@@ -115,9 +114,5 @@ body {
     &::scroll-button(right) {
       right: calc(anchor(right) + 16px);
     }
-  }
-
-  .item {
-    height: 100%;
   }
 }
