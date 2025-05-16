@@ -28,6 +28,7 @@ body {
   /* インジケーターの表示 */
   scroll-marker-group: after;
   scrollbar-width: none;
+  overflow: hidden;
 
   /* スクロールバー非表示（Chrome、Safari） */
   &::-webkit-scrollbar {
