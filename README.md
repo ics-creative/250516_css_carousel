@@ -1,5 +1,5 @@
 # 250516_css_carousel
-記事『』のデモコードです。
+記事『[JavaScript不要! HTMLとCSSでつくるカルーセルUI](https://ics.media/entry/250516/)』のデモコードです。
 
 デモで使用している画像はいずれも[Unsplash](https://unsplash.com/)で取得しています。撮影者のクレジットは以下のとおりです。
 
