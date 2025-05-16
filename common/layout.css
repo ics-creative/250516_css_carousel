@@ -24,3 +24,21 @@ h1 {
   font-size: 26px;
   margin-bottom: 60px;
 }
+
+.message {
+  display: none;
+  text-align: center;
+}
+
+/* サポートされていないブラウザ向けメッセージ */
+@supports not (selector(::scroll-button(*))) {
+  .message {
+    display: block;
+  }
+}
+
+@supports not (selector(::scroll-marker)) {
+  .message {
+    display: block;
+  }
+}
